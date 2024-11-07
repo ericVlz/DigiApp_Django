@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ documento.nombre }}</h1>
+<p>Subido por: {{ documento.propietario.username }}</p>
+<p>Fecha de creación: {{ documento.fecha_creacion }}</p>
+<a href="/media/{{ documento.archivo }}" target="_blank">Ver PDF</a>
+
+<iframe src="documentos/gbgb.pdf" width="100%" height="600px"></iframe>
+
+
+{% endblock %}

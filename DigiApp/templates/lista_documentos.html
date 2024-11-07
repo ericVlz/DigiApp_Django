@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <div class="container-fluid">
+
+        <div class="card shadow mb-4 p-2">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Registros</h6>
+            </div>
+            <div class="card-body">
+                
+                <div class="container">
+
+                    <form method="GET">
+                        <div class="row justify-content-end">
+                            <div class="col-md mb-2">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-start">
+                                        {% if page_obj.has_previous %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page=1" aria-label="First">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                                            </li>
+                                        {% endif %}
+                            
+                                        <li class="page-item active">
+                                            <span class="page-link">
+                                                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                                            </span>
+                                        </li>
+                            
+                                        {% if page_obj.has_next %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+        
+                            </div>
+
+                            
+                            <div class="col-md-2 mb-2">
+                                <select name="tag" id="tag" class="form-select">
+                                    <option value="">Todas</option>
+                                    {% for tag in tags %}
+                                    <option value="{{ tag.id }}" {% if request.GET.tag == tag.id|stringformat:"s" %}selected{% endif %}>
+                                        {{ tag.nombre }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="col-md-3 mb-2">
+                                <input name="q" class="form-control" type="text" placeholder="Buscar...">
+                            </div>
+                            
+            
+                            <div class="col-md-1 mb-2">
+                                <button type="submit" class="btn btn-light">Search</button>
+                            </div>
+                    
+                        </div>     
+                    </form>
+
+                        
+                    
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-search="true">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Fecha creación</th>
+                                <th>Propietario</th>
+                                <th>tags</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Fecha creación</th>
+                                <th>Propietario</th>
+                                <th>tags</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {% for documento in page_obj %}
+                            <tr>
+                                <th>{{ documento.id }}</th>
+                                <td>{{ documento.nombre }}</td>
+                                <td>{{ documento.fecha_creacion }}</td>
+                                <td>{{ documento.propietario.username }}</td>
+                                <td>
+                                    {% for tag in documento.tags.all %}
+                                        {{ tag.nombre }}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    
+                                    <a class="btn btn-info btn-sm" href="/media/{{ documento.archivo }}" target="_blank" role="button">ver</a>
+                                    
+                                    {% if 'Administradores' in grupos_usuario or 'Directivos' in grupos_usuario %}
+                                    <a class="btn btn-warning btn-sm" href="{% url 'editar_documento' documento.id %}" role="button">modificar</a>
+                                    {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+        
+            <!-- Cards
+        
+            <div class="row">
+                {% for documento in page_obj %}
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="card shadow mb-2">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">{{ documento.nombre }}</h6>
+                            </div>
+                            <div class="card-body">
+                                {{ documento.nombre }}<br>
+                                {{ documento.fecha_creacion }}<br>
+                                {{ documento.propietario.username }}<br>
+                                
+                                {% for tag in documento.tags.all %}
+                                    {{ tag.nombre }}<br>
+                                {% endfor %}
+                                
+                                ver
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            -->
+        
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1" aria-label="First">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                        </li>
+                    {% endif %}
+        
+                    <li class="page-item active">
+                        <span class="page-link">
+                            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                        </span>
+                    </li>
+        
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+
+            
+
+
+        </div>
+    </div>
+
+
+
+
+        
+{% endblock %}

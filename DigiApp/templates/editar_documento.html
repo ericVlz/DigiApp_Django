@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load bootstrap5 %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="card shadow mb-4 p-2">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Editar archivo</h6>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {% bootstrap_field form.nombre %}
+                    </div>
+                    <div class="mb-3">
+                        {% bootstrap_field form.archivo %}
+                    </div>
+                    <div class="mb-3">
+                        {% bootstrap_field form.propietario %}
+                    </div>
+                    <div class="mb-3">
+                        <label>Tags:</label>
+                        <div class="form-check">
+                            {% for checkbox in form.tags %}
+                                <div class="form-check">
+                                    {{ checkbox }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
