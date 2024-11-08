@@ -1,0 +1,25 @@
+body {
+    background-image: url("../img/fondo-sahuaros2.jpg");
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.transparent_card {
+    background-color: rgba(255, 255, 255, 0.9); 
+}
+
+.def_color {
+    color: #5c3f2e;
+}
+
+.str_color strong,
+.str_color h1,
+.str_color h2,
+.str_color h3,
+.str_color h4,
+.str_color h5,
+.str_color h6 {
+    color: #5c3f2e;
+}

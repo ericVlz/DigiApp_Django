@@ -7,10 +7,14 @@ from django.contrib.auth.models import User
 
 
 @receiver(post_save, sender=User)
-def agregar_superusuario_a_administradores(sender, instance, created, **kwargs):
-    if created and instance.is_superuser:
-        grupo_administradores, _ = Group.objects.get_or_create(name='Administradores')
-        instance.groups.add(grupo_administradores)
+def agregar_a_grupos_por_defecto(sender, instance, created, **kwargs):
+    if created:
+        if instance.is_superuser:
+            grupo_administradores, _ = Group.objects.get_or_create(name='Administradores')
+            instance.groups.add(grupo_administradores)
+        else:
+            grupo_administradores, _ = Group.objects.get_or_create(name='Operativos')
+            instance.groups.add(grupo_administradores)
 
 
 @receiver(post_migrate)

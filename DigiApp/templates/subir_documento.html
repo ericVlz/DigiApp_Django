@@ -5,14 +5,14 @@
 
 <div class="container-fluid">
 
-    <div class="card shadow mb-4 p-2">
+    <div class="card shadow mb-4 p-2 mx-auto" style="width: 90%;">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Subir archivo</h6>
         </div>
         <div class="card-body">
             <div class="container">
 
-                <form method="post" enctype="multipart/form-data">
+                <form method="post" enctype="multipart/form-data" action=".">
                     {% csrf_token %}
                     <div class="mb-3">
                         {% bootstrap_field form.nombre %}
@@ -33,6 +33,10 @@
                             {% endfor %}
                         </div>
                     </div>
+
+
+
+
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
             </div>

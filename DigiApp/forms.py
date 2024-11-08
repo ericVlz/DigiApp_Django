@@ -27,6 +27,10 @@ class DocumentoForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple(attrs={'class':'form-check-input'})
     )
 
+    #new_tag = forms.CharField(max_length=50, required=False, label="Nueva Etiqueta")
+
+
+
     class Meta:
         model = Documento
         fields = ['nombre', 'archivo', 'propietario', 'tags']

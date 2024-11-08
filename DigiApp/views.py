@@ -97,6 +97,23 @@ def logout_view(request):
 def subir_documento(request):
     if request.method == 'POST':
         form = DocumentoForm(request.POST, request.FILES)
+        
+        """new_tag_name = form.data.get('new_tag')
+        if new_tag_name:
+            
+            Tag.objects.get_or_create(nombre=new_tag_name)
+            
+            #return redirect(reverse('subir_documento'))
+
+            #form = DocumentoForm(request.POST, request.FILES)
+            #form = DocumentoForm(initial=request.POST.dict())
+            #form.fields['new_tag'].initial = '' 
+
+            form = DocumentoForm(request.POST, request.FILES)
+            form.new_tag().clean()
+            
+        elif form.is_valid():"""
+
         if form.is_valid():
 
             documento = form.save(commit=False)

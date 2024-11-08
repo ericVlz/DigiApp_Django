@@ -1,15 +1,57 @@
 {% extends "base.html" %}
 
+{% load static %}
 {% block content %}
 
 
 <div class="container-fluid">
-    <div class="card shadow mb-4 p-2" style="min-height: 85vh;">
+    <div class="card shadow mb-4 p-2 mx-auto transparent_card" style="min-height: 85vh; width: 80%;">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Home</h6>
+            <center>
+                <img src="{% static 'img/logo-proaes.svg' %}"  width="80%"  class="d-inline-block align-center">
+            </center>
         </div>
-        <div class="card-body">
-            Esto es una pagina de inicio provisional...
+        <div class="card-body str_color">
+            <h3>¿Quiénes somos?</h3>
+            <div>
+                <p>La <strong>Procuraduría Ambiental del
+                        Estado de Sonora, PROAES,</strong> nace con el objeto fundamental de contar con mayores herramientas
+                    jurídicas e institucionales que permitan <strong>salvaguardar el derecho de las personas a contar con un
+                        entorno adecuado y de mejorar la calidad de vida</strong> en todos los ámbitos.</p>
+                <p>Es un Organismo Público Descentralizado del Poder Ejecutivo Estatal, con personalidad jurídica y
+                    patrimonio propio, sectorizado a la Secretaría de Infraestructura y Desarrollo Urbano del Estado (SIDUR).
+                </p>
+                <p>Fue creada a través del Decreto No. 165 publicado en el Boletín Oficial del Gobierno del Estado del
+                    07 de Noviembre de 2011, el cual entró en vigor 90 días después de su publicación, siendo esta el 05 de
+                    Febrero de 2012.</p>
+            </div>
+
+            <div>
+                <h3>¿Qué hacemos?</h3>
+                <div>
+                    <p>La PROAES alcanza sus objetivos
+                        aplicando la ley de forma efectiva y expedita, <strong>emprendiendo acciones de inspección vigilancia y de
+                            fomento del conocimiento y aplicación de la normatividad ambiental, en todos los sectores
+                            sociales;</strong> así como, la promoción de programas voluntarios que premien a los establecimientos.
+                    </p>
+                    <p>Para ello, se toman como base las siguientes materias ambientales que se contemplan en la Ley del
+                        Equilibrio Ecológico y la Protección al Ambiente del Estado de Sonora y demás ordenamientos legales
+                        aplicables.</p>
+            
+                    <ul>
+                        <li>Impacto Ambiental</li>
+                        <li>Actividades Riesgosas</li>
+                        <li>Prevención y Control de la Contaminación de la Atmósfera</li>
+                        <li>Prevención y Control de la Contaminación por Residuos Exploración,
+                            Explotación y Aprovechamiento de Minerales y Sustancias No Reservadas a la
+                            Federación</li>
+                        <li>Contaminación Visual y de la Generada por Ruido Vibraciones,
+                            Energía Térmica, Energía Luminica y Olores</li>
+                    </ul>
+                </div>
+            </div>
+            
+
         </div>
     </div>
 </div>
